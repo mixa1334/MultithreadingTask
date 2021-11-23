@@ -5,8 +5,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.StringJoiner;
 
-public class Van implements Runnable {
-    private final int capacity;
+public class Van {
+    private final int CAPACITY;
     private final String name;
     private final List<String> products;
     private final boolean expressDelivery;
@@ -15,18 +15,13 @@ public class Van implements Runnable {
     public Van(String name, boolean expressDelivery, int capacity, VanState state) {
         this.name = name;
         this.expressDelivery = expressDelivery;
-        this.capacity = capacity;
+        CAPACITY = capacity;
         products = new ArrayList<>(capacity);
         this.state = state;
     }
 
-    @Override
-    public void run() {
-        // TODO: 11/22/2021
-    }
-
     public int getCapacity() {
-        return capacity;
+        return CAPACITY;
     }
 
     public String getName() {
@@ -60,7 +55,7 @@ public class Van implements Runnable {
 
         Van van = (Van) o;
 
-        if (capacity != van.capacity) return false;
+        if (CAPACITY != van.CAPACITY) return false;
         if (expressDelivery != van.expressDelivery) return false;
         if (name != null ? !name.equals(van.name) : van.name != null) return false;
         if (products != null ? !products.equals(van.products) : van.products != null) return false;
@@ -69,7 +64,7 @@ public class Van implements Runnable {
 
     @Override
     public int hashCode() {
-        int result = capacity;
+        int result = CAPACITY;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (products != null ? products.hashCode() : 0);
         result = 31 * result + (expressDelivery ? 1 : 0);
@@ -80,7 +75,7 @@ public class Van implements Runnable {
     @Override
     public String toString() {
         return new StringJoiner(", ", Van.class.getSimpleName() + "[", "]")
-                .add("capacity=" + capacity)
+                .add("capacity=" + CAPACITY)
                 .add("name='" + name + "'")
                 .add("products=" + products)
                 .add("expressDelivery=" + expressDelivery)

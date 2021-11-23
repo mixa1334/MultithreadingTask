@@ -11,6 +11,8 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class ProductStorage implements Storage<String> {
     private static final Logger logger = LogManager.getLogger();
+    private static final int DELAY = 5_000;
+    private static final int PERIOD = 10_000;
     private final int CAPACITY;
     private final LinkedList<String> storageProducts;
     private Timer timer;
@@ -25,7 +27,7 @@ public class ProductStorage implements Storage<String> {
         waitingForFreeStorageSpace = lock.newCondition();
         waitingForFreeGoods = lock.newCondition();
         timer = new Timer(true);
-        timer.schedule(new GarbageTruck(), 5_000, 10_000);
+        timer.schedule(new GarbageTruck(), DELAY, PERIOD);
     }
 
     public List<String> getFromStorage(int numberOfProducts) {
