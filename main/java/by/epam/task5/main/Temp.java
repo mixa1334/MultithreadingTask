@@ -1,6 +1,6 @@
 package by.epam.task5.main;
 
-import by.epam.task5.entity.ProductStorage;
+import by.epam.task5.base.impl.ProductStorage;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -44,13 +44,13 @@ class T extends Thread {
     public void run() {
         logger.log(Level.INFO, "start T - " + name);
         if (st) {
-            logger.log(Level.INFO, storage.giveGoods(cap) + " received to ->" + name);
+            logger.log(Level.INFO, storage.getFromStorage(cap) + " received to ->" + name);
         } else {
             ArrayList<String> products = new ArrayList<>(cap);
             for (int i = 0; i < cap; i++) {
                 products.add(name + "prod");
             }
-            storage.receiveGoods(products);
+            storage.putInStorage(products);
             logger.log(Level.INFO, cap + " loaded from -> " + name);
         }
         logger.log(Level.INFO, "end T - " + name);

@@ -28,7 +28,7 @@ public class IdGenerator {
         return instance;
     }
 
-    long generateId() {
+    public long generateId() {
         return id.getAndIncrement();
     }
 }

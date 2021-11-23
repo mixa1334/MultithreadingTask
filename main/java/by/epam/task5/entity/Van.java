@@ -5,8 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.StringJoiner;
 
-import static by.epam.task5.entity.VanState.*;
-
 public class Van implements Runnable {
     private final int capacity;
     private final String name;
@@ -14,12 +12,12 @@ public class Van implements Runnable {
     private final boolean expressDelivery;
     private VanState state;
 
-    public Van(String name, boolean expressDelivery, int capacity) {
+    public Van(String name, boolean expressDelivery, int capacity, VanState state) {
         this.name = name;
         this.expressDelivery = expressDelivery;
         this.capacity = capacity;
         products = new ArrayList<>(capacity);
-        state = NEW;
+        this.state = state;
     }
 
     @Override

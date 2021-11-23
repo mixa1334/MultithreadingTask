@@ -1,17 +1,16 @@
-package by.epam.task5.entity;
+package by.epam.task5.base.impl;
 
+import by.epam.task5.base.Storage;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class ProductStorage {
+public class ProductStorage implements Storage<String> {
     private static final Logger logger = LogManager.getLogger();
-    private static final int ONE_MILLISECOND_DELAY = 1_000;
     private final int CAPACITY;
     private final LinkedList<String> storageProducts;
     private Timer timer;
@@ -29,14 +28,13 @@ public class ProductStorage {
         timer.schedule(new GarbageTruck(), 5_000, 10_000);
     }
 
-    public List<String> giveGoods(int numberOfProducts) {
+    public List<String> getFromStorage(int numberOfProducts) {
         ArrayList<String> result = new ArrayList<>(numberOfProducts);
         try {
             lock.lock();
             while (numberOfProducts > 0) {
                 String product = storageProducts.poll();
                 if (product != null) {
-                    TimeUnit.MILLISECONDS.sleep((int) (Math.random() * ONE_MILLISECOND_DELAY));
                     result.add(product);
                     numberOfProducts--;
                 } else {
@@ -53,13 +51,12 @@ public class ProductStorage {
         return result;
     }
 
-    public void receiveGoods(List<String> products) {
+    public void putInStorage(List<String> products) {
         try {
             lock.lock();
             while (products.size() > 0) {
                 if (storageProducts.size() < CAPACITY) {
                     String product = products.remove(products.size() - 1);
-                    TimeUnit.MILLISECONDS.sleep((int) (Math.random() * ONE_MILLISECOND_DELAY));
                     storageProducts.offer(product);
                 } else {
                     waitingForFreeGoods.signalAll();
