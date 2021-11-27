@@ -9,7 +9,7 @@ import java.util.*;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class ProductStorage implements Storage<String> {
+public class ProductStorage implements Storage {
     private static final Logger logger = LogManager.getLogger();
     private static final int DELAY = 5_000;
     private static final int PERIOD = 10_000;

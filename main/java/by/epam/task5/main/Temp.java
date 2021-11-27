@@ -6,23 +6,33 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Temp {
     public static void main(String[] args) {
-        ProductStorage storage = new ProductStorage(10);
-        ExecutorService executor = Executors.newFixedThreadPool(7);
-        executor.execute(new T(3, storage, "1", false));
-        executor.execute(new T(10, storage, "2", false));
-        executor.execute(new T(7, storage, "3", true));
-        executor.execute(new T(5, storage, "4", false));
-        executor.execute(new T(1, storage, "5", true));
-        executor.execute(new T(9, storage, "6", true));
-        executor.execute(new T(3, storage, "7", true));
-        executor.execute(new T(2, storage, "8", false));
 
-        executor.shutdown();
+        ResourceBundle bundle = ResourceBundle.getBundle("baseConfig");
+        String numebrOfTerminals = bundle.getString("terminals");
+        int c = Integer.parseInt(numebrOfTerminals);
+        String storageCapacity = bundle.getString("storagecapacity");
+
+        System.out.println(c);
+        System.out.println(storageCapacity);
+
+//        ProductStorage storage = new ProductStorage(10);
+//        ExecutorService executor = Executors.newFixedThreadPool(7);
+//        executor.execute(new T(3, storage, "1", false));
+//        executor.execute(new T(10, storage, "2", false));
+//        executor.execute(new T(7, storage, "3", true));
+//        executor.execute(new T(5, storage, "4", false));
+//        executor.execute(new T(1, storage, "5", true));
+//        executor.execute(new T(9, storage, "6", true));
+//        executor.execute(new T(3, storage, "7", true));
+//        executor.execute(new T(2, storage, "8", false));
+//
+//        executor.shutdown();
     }
 }
 

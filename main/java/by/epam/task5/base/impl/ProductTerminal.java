@@ -1,5 +1,6 @@
 package by.epam.task5.base.impl;
 
+import by.epam.task5.base.Storage;
 import by.epam.task5.base.Terminal;
 import by.epam.task5.entity.Van;
 import by.epam.task5.exception.LogisticBaseException;
@@ -13,23 +14,22 @@ import static by.epam.task5.entity.VanState.*;
 
 public class ProductTerminal implements Terminal {
     private static final Logger logger = LogManager.getLogger();
-    private final ProductStorage storage;
+    private final Storage storage;
 
-    public ProductTerminal(ProductStorage storage) {
+    public ProductTerminal(Storage storage) {
         this.storage = storage;
     }
 
     public void vanHandling(Van van) {
         try {
+            van.setState(IN_PROCESS);
             switch (van.getState()) {
                 case NEEDS_LOADING -> {
-                    van.setState(IN_PROCESS);
                     List<String> products = storage.getFromStorage(van.getCapacity());
                     WorkProcess.work();
                     van.loadProducts(products);
                 }
                 case NEEDS_UNLOADING -> {
-                    van.setState(IN_PROCESS);
                     List<String> products = van.retrieveProducts();
                     WorkProcess.work();
                     storage.putInStorage(products);
