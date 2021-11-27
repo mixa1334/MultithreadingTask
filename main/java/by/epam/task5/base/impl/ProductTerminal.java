@@ -5,7 +5,7 @@ import by.epam.task5.base.Terminal;
 import by.epam.task5.entity.Van;
 import by.epam.task5.entity.VanState;
 import by.epam.task5.exception.LogisticBaseException;
-import by.epam.task5.service.WorkProcess;
+import by.epam.task5.base.WorkProcess;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

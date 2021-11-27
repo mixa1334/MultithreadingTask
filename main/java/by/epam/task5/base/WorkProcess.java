@@ -1,4 +1,4 @@
-package by.epam.task5.service;
+package by.epam.task5.base;
 
 import by.epam.task5.exception.LogisticBaseException;
 
