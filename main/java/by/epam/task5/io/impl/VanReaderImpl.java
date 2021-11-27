@@ -20,7 +20,7 @@ public class VanReaderImpl implements VanReader {
         try (Stream<String> stream = Files.lines(Paths.get(path))) {
             return stream.toList();
         } catch (IOException e) {
-            logger.log(Level.INFO, "invalid path to file - " + path);
+            logger.log(Level.ERROR, "invalid path to file - " + path);
             throw new LogisticBaseException("invalid path to file - " + path, e);
         }
     }

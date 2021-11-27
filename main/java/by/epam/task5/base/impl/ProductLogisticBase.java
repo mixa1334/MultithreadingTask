@@ -46,7 +46,7 @@ public class ProductLogisticBase implements LogisticBase {
         freeTerminals = new ArrayDeque<>(NUMBER_OF_TERMINALS);
         currentlyUsedTerminals = new ArrayList<>(NUMBER_OF_TERMINALS);
         for (int i = 0; i < NUMBER_OF_TERMINALS; i++) {
-            freeTerminals.offerLast(new ProductTerminal(storage));
+            freeTerminals.offerLast(new ProductTerminal(i + "", storage));
         }
     }
 
@@ -82,6 +82,7 @@ public class ProductLogisticBase implements LogisticBase {
                 terminal = freeTerminals.pollFirst();
             }
             currentlyUsedTerminals.add(terminal);
+            logger.log(Level.INFO, "van " + van.getName() + " got " + terminal);
         } catch (InterruptedException e) {
             logger.log(Level.ERROR, e.getMessage());
         } finally {
@@ -91,7 +92,7 @@ public class ProductLogisticBase implements LogisticBase {
     }
 
     @Override
-    public void closeTerminal(Terminal terminal) {
+    public void closeTerminal(Van van, Terminal terminal) {
         try {
             terminalLock.lock();
             currentlyUsedTerminals.remove(terminal);
@@ -103,6 +104,7 @@ public class ProductLogisticBase implements LogisticBase {
             if (condition != null) {
                 condition.signal();
             }
+            logger.log(Level.INFO, "van " + van.getName() + " return " + terminal);
         } finally {
             terminalLock.unlock();
         }

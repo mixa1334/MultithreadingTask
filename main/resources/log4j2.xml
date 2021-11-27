@@ -3,7 +3,8 @@
     <Properties>
         <property name="LOG_DIR">logs</property>
         <property name="ARCHIVE_LOG_DIR">${LOG_DIR}/archive</property>
-        <property name="pattern_console">%d{HH:mm:ss} [%t] %-5level %logger{5} - %msg%n</property>
+        <property name="pattern_console">%d{HH:mm:ss} %-5level - %msg%n</property>
+        <property name="pattern_zip">%d{HH:mm:ss} [%t] %-5level %logger{5} - %msg%n</property>
     </Properties>
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
@@ -21,7 +22,7 @@
         </RollingFile>
         <RollingFile name="FileZip" fileName="${LOG_DIR}/text_arch.log" append="true"
                      filePattern="${ARCHIVE_LOG_DIR}/${date:yyyy-MM-dd}/%d{yyyy-MM-dd_HH-mm}_%i.log.zip">
-            <PatternLayout pattern="${pattern_console}"/>
+            <PatternLayout pattern="${pattern_zip}"/>
             <BurstFilter level="INFO" rate="16" maxBurst="100"/>
             <Policies>
                 <SizeBasedTriggeringpolicy size="25 KB"/>

@@ -1,6 +1,6 @@
 package by.epam.task5.entity;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -12,7 +12,7 @@ public class Van {
     private VanState state;
 
     public Van() {
-
+        products = new ArrayList<>();
     }
 
     public void setCapacity(int capacity) {
@@ -36,7 +36,7 @@ public class Van {
     }
 
     public void loadProducts(List<String> products) {
-        Collections.copy(this.products, products);
+        this.products = new ArrayList<>(products);
     }
 
     public boolean isExpressDelivery() {

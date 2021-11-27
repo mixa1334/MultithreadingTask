@@ -5,5 +5,5 @@ import by.epam.task5.entity.Van;
 public interface LogisticBase {
     Terminal getTerminal(Van van);
 
-    void closeTerminal(Terminal terminal);
+    void closeTerminal(Van van, Terminal terminal);
 }
