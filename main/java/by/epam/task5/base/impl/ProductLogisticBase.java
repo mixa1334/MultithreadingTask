@@ -82,7 +82,7 @@ public class ProductLogisticBase implements LogisticBase {
                 terminal = freeTerminals.pollFirst();
             }
             currentlyUsedTerminals.add(terminal);
-            logger.log(Level.INFO, "van " + van.getName() + " got " + terminal);
+            logger.log(Level.INFO, van.getName() + " got " + terminal);
         } catch (InterruptedException e) {
             logger.log(Level.ERROR, e.getMessage());
         } finally {
@@ -104,7 +104,7 @@ public class ProductLogisticBase implements LogisticBase {
             if (condition != null) {
                 condition.signal();
             }
-            logger.log(Level.INFO, "van " + van.getName() + " return " + terminal);
+            logger.log(Level.INFO, van.getName() + " return " + terminal);
         } finally {
             terminalLock.unlock();
         }
