@@ -1,27 +1,30 @@
 package by.epam.task5.entity;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.StringJoiner;
 
 public class Van {
-    private final int CAPACITY;
-    private final String name;
-    private final List<String> products;
-    private final boolean expressDelivery;
+    private int capacity;
+    private String name;
+    private List<String> products;
+    private boolean expressDelivery;
     private VanState state;
 
-    public Van(String name, boolean expressDelivery, int capacity, VanState state) {
-        this.name = name;
-        this.expressDelivery = expressDelivery;
-        CAPACITY = capacity;
-        products = new ArrayList<>(capacity);
-        this.state = state;
+    public Van() {
+
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 
     public int getCapacity() {
-        return CAPACITY;
+        return capacity;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getName() {
@@ -32,16 +35,20 @@ public class Van {
         return products;
     }
 
+    public void loadProducts(List<String> products) {
+        Collections.copy(this.products, products);
+    }
+
     public boolean isExpressDelivery() {
         return expressDelivery;
     }
 
-    public VanState getState() {
-        return state;
+    public void setExpressDelivery(boolean expressDelivery) {
+        this.expressDelivery = expressDelivery;
     }
 
-    public void loadProducts(List<String> products) {
-        Collections.copy(this.products, products);
+    public VanState getState() {
+        return state;
     }
 
     public void setState(VanState state) {
@@ -55,7 +62,7 @@ public class Van {
 
         Van van = (Van) o;
 
-        if (CAPACITY != van.CAPACITY) return false;
+        if (capacity != van.capacity) return false;
         if (expressDelivery != van.expressDelivery) return false;
         if (name != null ? !name.equals(van.name) : van.name != null) return false;
         if (products != null ? !products.equals(van.products) : van.products != null) return false;
@@ -64,7 +71,7 @@ public class Van {
 
     @Override
     public int hashCode() {
-        int result = CAPACITY;
+        int result = capacity;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (products != null ? products.hashCode() : 0);
         result = 31 * result + (expressDelivery ? 1 : 0);
@@ -75,7 +82,7 @@ public class Van {
     @Override
     public String toString() {
         return new StringJoiner(", ", Van.class.getSimpleName() + "[", "]")
-                .add("capacity=" + CAPACITY)
+                .add("capacity=" + capacity)
                 .add("name='" + name + "'")
                 .add("products=" + products)
                 .add("expressDelivery=" + expressDelivery)

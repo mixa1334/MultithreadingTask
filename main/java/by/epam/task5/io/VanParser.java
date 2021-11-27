@@ -1,5 +1,9 @@
 package by.epam.task5.io;
 
+import by.epam.task5.entity.Van;
+
+import java.util.List;
+
 public interface VanParser {
-    // TODO: 11/23/2021
+    List<Van> parse(List<String> vans);
 }

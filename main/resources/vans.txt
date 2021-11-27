@@ -1,0 +1,6 @@
+10; van1; true; NEEDS_LOADING
+5; van2; false; NEEDS_UNLOADING; van2prod1, van2prod2, van2prod3, van2prod4, van2prod5
+7; van3; false; NEEDS_UNLOADING; van3prod1, van3prod2, van3prod3, van3prod4, van3prod5, van3prod6, van3prod7
+1; van4; true; NEEDS_LOADING
+3; van5; false; NEEDS_UNLOADING; van5prod1, van5prod2, van5prod3
+1; van6; true; NEED_UNLOADING; van6prod1
